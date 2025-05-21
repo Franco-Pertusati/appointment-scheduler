@@ -1,9 +1,9 @@
 const errorHandler = (err, req, res, next) => {
   const statusCode = err.statusCode || 500;
-  const message = err.message || "Ocurrio un error inesperado";
+  const message = err.message || 'Ocurrió un Error Inesperado';
 
   console.error(
-    `[error] ${new Date().toISOString()} - ${statusCode} - ${message}`
+    `[ERROR] ${new Date().toISOString()} - ${statusCode} - ${message}`
   );
 
   if (err.stack) {
@@ -11,10 +11,10 @@ const errorHandler = (err, req, res, next) => {
   }
 
   res.status(statusCode).json({
-    status: "error",
+    status: 'error',
     statusCode,
     message,
-    ...(process.env.NODE_ENV === "development" && { stack: err.stack }),
+    ...(process.env.NODE_ENV === 'development' && { stack: err.stack })
   });
 };
 
